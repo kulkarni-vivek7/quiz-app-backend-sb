@@ -1,0 +1,1559 @@
+{
+  "Java": [
+    {
+      "questionId": "java1",
+      "questionText": "Which of these is not a feature of Java?",
+      "options": ["Object-oriented", "Platform independent", "Use of pointers", "Supports multithreading"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "java2",
+      "questionText": "What does JVM stand for?",
+      "options": ["Java Virtual Machine", "Java Vendor Machine", "Java Visual Mode", "Java Variable Manager"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "java3",
+      "questionText": "What is the size of int in Java?",
+      "options": ["16 bit", "32 bit", "64 bit", "Depends on system"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "java4",
+      "questionText": "Which keyword is used to define a subclass in Java?",
+      "options": ["extends", "implements", "inherits", "derives"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "java5",
+      "questionText": "Which of the following operators is used to allocate memory to an object?",
+      "options": ["malloc", "alloc", "new", "create"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "java6",
+      "questionText": "Which method is the entry point of a Java program?",
+      "options":["start()", "main()", "run()", "init()"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "java7",
+      "questionText": "Which of these is not a valid access modifier in Java?",
+      "options": ["public", "private", "protected", "internal"],
+      "correctOptionIndex": 3
+    },
+    {
+      "questionId": "java8",
+      "questionText": "Which data type is used to create a variable that should store text?",
+      "options": ["String", "Txt", "myString", "string"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "java9",
+      "questionText": "Which package contains the Random class?",
+      "options": ["java.util", "java.lang", "java.io", "java.net"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "java10",
+      "questionText": "Which of these cannot be used for a variable name in Java?",
+      "options": ["identifier", "keyword", "variable", "name"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "java11",
+      "questionText": "Which of the following exception types is checked?",
+      "options": ["IOException", "NullPointerException", "ArithmeticException", "ArrayIndexOutOfBoundsException"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "java12",
+      "questionText": "What does the keyword 'static' mean?",
+      "options": ["Instance level", "Class level", "Abstract", "Immutable"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "java13",
+      "questionText": "Which of the following is used to inherit a class in Java?",
+      "options": ["extends", "implements", "inherits", "uses"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "java14",
+      "questionText": "What is an interface in Java?",
+      "options": ["Class with only abstract methods", "Class with no methods", "Class with only concrete methods", "Primitive data type"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "java15",
+      "questionText": "Which of the following is the correct way to start a thread?",
+      "options": ["call run()", "call start()", "call execute()", "call init()"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "java16",
+      "questionText": "Which operator is used for concatenation in Java?",
+      "options": ["+", "&", "*", "."],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "java17",
+      "questionText": "What is the default value of a boolean variable?",
+      "options": ["true", "false", "0", "null"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "java18",
+      "questionText": "Which option is NOT a Java primitive type?",
+      "options": ["int", "float", "string", "char"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "java19",
+      "questionText": "Which keyword is used to prevent inheritance?",
+      "options": ["static", "final", "private", "protected"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "java20",
+      "questionText": "What will be the output of the expression (5 + 3) * 2?",
+      "options": ["16", "11", "13", "10"],
+      "correctOptionIndex": 0
+    }
+  ],
+  "AdvancedJava": [
+    {
+      "questionId": "advjava1",
+      "questionText": "What does JDBC stand for?",
+      "options": ["Java Database Connectivity", "Java Distributed Connection", "Java Dynamic Connection", "Java Data Connector"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "advjava2",
+      "questionText": "Which JDBC interface is used to send SQL queries to the database?",
+      "options": ["Connection", "Statement", "ResultSet", "Driver"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "advjava3",
+      "questionText": "What lifecycle method is called to initialize a servlet?",
+      "options": ["service()", "init()", "doGet()", "destroy()"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "advjava4",
+      "questionText": "Which JSP directive is used to include a file during translation time?",
+      "options": ["include", "page", "taglib", "import"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "advjava5",
+      "questionText": "Which design pattern is commonly used in Spring framework?",
+      "options": ["Singleton", "Factory", "Observer", "Decorator"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "advjava6",
+      "questionText": "Which annotation is used to declare a REST controller in Spring Boot?",
+      "options": ["@Service", "@Controller", "@RestController", "@Component"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "advjava7",
+      "questionText": "What is the default scope of a Spring bean?",
+      "options": ["Singleton", "Prototype", "Request", "Session"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "advjava8",
+      "questionText": "What does ORM stand for in Hibernate?",
+      "options": ["Object Relational Mapping", "Object Recursive Model", "Operator Relation Mapping", "Open Resource Manager"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "advjava9",
+      "questionText": "Which annotation declares a method as a transactional boundary in Spring?",
+      "options": ["@Transactional", "@Scope", "@Entity", "@Lazy"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "advjava10",
+      "questionText": "Which method in the Servlet API handles HTTP POST requests?",
+      "options": ["doGet()", "doPost()", "service()", "init()"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "advjava11",
+      "questionText": "Which JSP object is used to write output to the client?",
+      "options": ["out", "request", "response", "session"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "advjava12",
+      "questionText": "Which of the following is true about JavaBeans?",
+      "options": [
+        "They must be serializable",
+        "They have private properties",
+        "They have public no-argument constructors",
+        "All of the above"
+      ],
+      "correctOptionIndex": 3
+    },
+    {
+      "questionId": "advjava13",
+      "questionText": "What is the use of HttpSession?",
+      "options": ["Store information for a single request", "Store information between client and server sessions", "Handle exceptions", "Connect database"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "advjava14",
+      "questionText": "What is the role of DispatcherServlet in Spring MVC?",
+      "options": [
+        "Handles incoming requests and dispatches to controllers",
+        "Manages database connections",
+        "Generates views",
+        "Validates user input"
+      ],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "advjava15",
+      "questionText": "Which API is used for messaging in Java EE?",
+      "options": ["JMS", "JDBC", "JPA", "JNDI"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "advjava16",
+      "questionText": "Which technology allows object-relational mapping in Java?",
+      "options": ["JDBC", "Hibernate", "Servlets", "JSP"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "advjava17",
+      "questionText": "What is the main purpose of the 'web.xml' file in Java EE applications?",
+      "options": [
+        "Configuration of servlets and filters",
+        "Database connection setup",
+        "Application logging",
+        "Security management"
+      ],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "advjava18",
+      "questionText": "Which annotation is used to map a method to an HTTP GET request in Spring MVC?",
+      "options": ["@GetMapping", "@PostMapping", "@RequestMapping", "@Mapping"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "advjava19",
+      "questionText": "What is the use of the Java Persistence API (JPA)?",
+      "options": [
+        "Standard for object-relational mapping",
+        "Database connection pooling",
+        "Session management",
+        "REST API development"
+      ],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "advjava20",
+      "questionText": "What is the use of the 'final' keyword in Java?",
+      "options": [
+        "Declares constants or prevents inheritance/overriding",
+        "Declares variables",
+        "Creates objects",
+        "Manages memory"
+      ],
+      "correctOptionIndex": 0
+    }
+  ],
+  "Python": [
+    {
+      "questionId": "py1",
+      "questionText": "Who developed Python?",
+      "options": ["Wick van Rossum", "Guido van Rossum", "Rasmus Lerdorf", "James Gosling"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "py2",
+      "questionText": "Which of the following is a mutable data type in Python?",
+      "options": ["Tuple", "String", "List", "FrozenSet"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "py3",
+      "questionText": "What is the output of print(type(5 / 2))?",
+      "options": ["int", "float", "double", "str"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "py4",
+      "questionText": "How do you start a function in Python?",
+      "options": ["function myFunction()", "def myFunction()", "func myFunction()", "define myFunction()"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "py5",
+      "questionText": "What keyword is used to handle exceptions?",
+      "options": ["catch", "try", "except", "handle"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "py6",
+      "questionText": "Which of these is a Python keyword for loop?",
+      "options": ["for", "foreach", "loop", "repeat"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "py7",
+      "questionText": "What is the correct file extension for Python files?",
+      "options": [".pt", ".py", ".pyt", ".pyn"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "py8",
+      "questionText": "Which statement is used to create a set in Python?",
+      "options": ["{}", "[]", "set()", "()"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "py9",
+      "questionText": "What is the output of print('Hello' * 2)?",
+      "options": ["HelloHello", "Hello Hello", "Hello2", "Error"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "py10",
+      "questionText": "Which of the following is NOT a Python data type?",
+      "options": ["list", "tuple", "array", "dictionary"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "py11",
+      "questionText": "Which of these is the immutable data type?",
+      "options": ["set", "list", "tuple", "dict"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "py12",
+      "questionText": "How do you start a comment in Python?",
+      "options": ["//", "#", "/*", "<!--"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "py13",
+      "questionText": "Which method adds an item to a list?",
+      "options": ["add()", "insert()", "append()", "push()"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "py14",
+      "questionText": "How is memory managed in Python?",
+      "options": ["Automatic garbage collection", "Manual memory management", "Reference counting", "Both 1 and 3"],
+      "correctOptionIndex": 3
+    },
+    {
+      "questionId": "py15",
+      "questionText": "What is the keyword used to define a class in Python?",
+      "options": ["class", "object", "struct", "module"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "py16",
+      "questionText": "Python supports which programming paradigms?",
+      "options": ["Procedural", "Object-Oriented", "Functional", "All of the above"],
+      "correctOptionIndex": 3
+    },
+    {
+      "questionId": "py17",
+      "questionText": "What is the output of 3 == 3.0 in Python?",
+      "options": ["True", "False", "Error", "None"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "py18",
+      "questionText": "Which of the following is used to create an anonymous function in Python?",
+      "options": ["def", "lambda", "func", "anonymous"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "py19",
+      "questionText": "Which Python library is used for data science?",
+      "options": ["NumPy", "Pandas", "Matplotlib", "All of these"],
+      "correctOptionIndex": 3
+    },
+    {
+      "questionId": "py20",
+      "questionText": "What is the output of print(type([1, 2, 3]))?",
+      "options": ["list", "tuple", "array", "dict"],
+      "correctOptionIndex": 0
+    }
+  ],
+  "DBMS": [
+    {
+      "questionId": "dbms1",
+      "questionText": "What does DBMS stand for?",
+      "options": ["Database Management Software", "Database Management System", "Data Backup Management System", "DataBase Mainframe System"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "dbms2",
+      "questionText": "Who created the first DBMS?",
+      "options": ["Charles Babbage", "Edgar Frank Codd", "Charles Bachman", "Sharon B. Codd"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "dbms3",
+      "questionText": "Which of these is NOT a type of database?",
+      "options": ["Hierarchical", "Network", "Distributed", "Decentralized"],
+      "correctOptionIndex": 3
+    },
+    {
+      "questionId": "dbms4",
+      "questionText": "Data in a DBMS is stored in the form of?",
+      "options": ["Tables", "Linked Lists", "Arrays", "Stacks"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "dbms5",
+      "questionText": "The collection of information stored in the database at a particular moment is called?",
+      "options": ["Instance", "Schema", "Database", "Tuple"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "dbms6",
+      "questionText": "What is a tuple in DBMS?",
+      "options": ["A row in a table", "A column in a table", "A database", "A schema"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "dbms7",
+      "questionText": "Which property ensures that transactions are completed successfully?",
+      "options": ["Atomicity", "Consistency", "Isolation", "Durability"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "dbms8",
+      "questionText": "What causes data redundancy?",
+      "options": ["Multiple copies of data", "Unique data", "Data stored once", "Normalized databases"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "dbms9",
+      "questionText": "Which SQL statement is used to retrieve data?",
+      "options": ["GET", "SELECT", "OPEN", "FETCH"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "dbms10",
+      "questionText": "What is normalization in DBMS?",
+      "options": ["Reducing duplication in data", "Increasing data redundancy", "Data recovery", "Database creation"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "dbms11",
+      "questionText": "Which language is used to create database?",
+      "options": ["DDL", "DML", "DCL", "TCL"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "dbms12",
+      "questionText": "Which language is used to manipulate data?",
+      "options": ["DDL", "DML", "DCL", "TCL"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "dbms13",
+      "questionText": "Which is the key that uniquely identifies a row in a table?",
+      "options": ["Primary Key", "Foreign Key", "Candidate Key", "Composite Key"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "dbms14",
+      "questionText": "Which operation removes a table and its data?",
+      "options": ["DELETE", "DROP", "TRUNCATE", "REMOVE"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "dbms15",
+      "questionText": "ACID properties are used in?",
+      "options": ["Transaction Management", "Query Processing", "Database Design", "Data Mining"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "dbms16",
+      "questionText": "The process of controlling concurrent transactions?",
+      "options": ["Concurrency Control", "Data Mining", "Data Normalization", "Transaction Rollback"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "dbms17",
+      "questionText": "Which of the following is not a DBMS function?",
+      "options": ["Data Storage", "Transaction Management", "Resource Scheduling", "Data Retrieval"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "dbms18",
+      "questionText": "The language used to provide permissions in a DBMS is?",
+      "options": ["DDL", "DML", "TCL", "DCL"],
+      "correctOptionIndex": 3
+    },
+    {
+      "questionId": "dbms19",
+      "questionText": "What type of DBMS model is based on graph structure?",
+      "options": ["Network DBMS", "Hierarchical DBMS", "Relational DBMS", "Object-oriented DBMS"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "dbms20",
+      "questionText": "Which of these is a database recovery technique?",
+      "options": ["Checkpointing", "Normalization", "Indexing", "Scheduling"],
+      "correctOptionIndex": 0
+    }
+  ],
+  "DSA": [
+    {
+      "questionId": "dsa1",
+      "questionText": "Which data structure uses FIFO principle?",
+      "options": ["Stack", "Queue", "Tree", "Graph"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "dsa2",
+      "questionText": "Which data structure is used for recursion?",
+      "options": ["Queue", "Stack", "Array", "Linked List"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "dsa3",
+      "questionText": "What is the time complexity of binary search on a sorted array?",
+      "options": ["O(n)", "O(log n)", "O(n log n)", "O(1)"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "dsa4",
+      "questionText": "What is the data structure used in Breadth First Search (BFS)?",
+      "options": ["Stack", "Queue", "Priority Queue", "Hash Table"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "dsa5",
+      "questionText": "Which of the following is not a linear data structure?",
+      "options": ["Array", "Linked List", "Tree", "Queue"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "dsa6",
+      "questionText": "Which data structure is best suited for implementing function calls?",
+      "options": ["Queue", "Stack", "Heap", "Graph"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "dsa7",
+      "questionText": "What does a binary search tree maintain?",
+      "options": ["Balanced nodes", "Sorted order of elements", "Random order", "All of the above"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "dsa8",
+      "questionText": "Which algorithm is used to find the shortest path in a graph?",
+      "options": ["Dijkstra's Algorithm", "Kruskal's Algorithm", "Prim's Algorithm", "DFS"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "dsa9",
+      "questionText": "Which of the following sorts has average complexity O(n log n)?",
+      "options": ["Bubble Sort", "Insertion Sort", "Merge Sort", "Selection Sort"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "dsa10",
+      "questionText": "What is a leaf node in a tree?",
+      "options": ["Node with no children", "Node with only one child", "Root node", "Node with two children"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "dsa11",
+      "questionText": "Which data structure uses key-value pairs?",
+      "options": ["Linked List", "Array", "Hash Table", "Queue"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "dsa12",
+      "questionText": "What does DFS stand for in graph traversal?",
+      "options": ["Depth First Search", "Data Flow Search", "Depth Filter Search", "Data First Search"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "dsa13",
+      "questionText": "What is the worst case time complexity of quicksort?",
+      "options": ["O(n)", "O(n^2)", "O(n log n)", "O(log n)"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "dsa14",
+      "questionText": "Which data structure is used in a breadth-first search?",
+      "options": ["Stack", "Queue", "Heap", "Tree"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "dsa15",
+      "questionText": "Which traversal method is used to get sorted order in binary search tree?",
+      "options": ["Inorder", "Preorder", "Postorder", "Level order"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "dsa16",
+      "questionText": "Which algorithm is used in a priority queue?",
+      "options": ["FIFO", "LIFO", "Heap", "Stack"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "dsa17",
+      "questionText": "What is the maximum number of nodes in a binary tree of height h?",
+      "options": ["2^h", "2^(h+1) - 1", "h^2", "h+1"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "dsa18",
+      "questionText": "Which data structure is best for undo operation in software?",
+      "options": ["Queue", "Stack", "Graph", "Linked List"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "dsa19",
+      "questionText": "What type of queue allows insertion and deletion at both ends?",
+      "options": ["Circular Queue", "Priority Queue", "Double Ended Queue (Deque)", "Simple Queue"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "dsa20",
+      "questionText": "Which data structure can be used for LRU cache implementation?",
+      "options": ["Hash Table + Doubly Linked List", "Array", "Stack", "Queue"],
+      "correctOptionIndex": 0
+    }
+  ],
+  "Computers": [
+    {
+      "questionId": "comp1",
+      "questionText": "What is the full form of CPU?",
+      "options": ["Central Processing Unit", "Computer Performance Unit", "Central Power Unit", "Control Processing Unit"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "comp2",
+      "questionText": "Which is the primary memory of computer?",
+      "options": ["RAM", "ROM", "Cache", "Hard Disk"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "comp3",
+      "questionText": "Which device is used for input in a computer?",
+      "options": ["Printer", "Keyboard", "Monitor", "Speaker"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "comp4",
+      "questionText": "Which of following is volatile memory?",
+      "options": ["ROM", "Flash Memory", "RAM", "Hard Disk"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "comp5",
+      "questionText": "Which language does computer understand?",
+      "options": ["High-level Language", "Assembly Language", "Machine Language", "English"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "comp6",
+      "questionText": "Which part of the computer executes instructions?",
+      "options": ["Input Device", "Memory", "CPU", "Output Device"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "comp7",
+      "questionText": "What is the use of cache memory?",
+      "options": ["Stores all data", "Stores frequently used data", "Stores graphics", "Stores passwords"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "comp8",
+      "questionText": "Which of the following is a storage device?",
+      "options": ["Keyboard", "Scanner", "Hard Disk", "Printer"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "comp9",
+      "questionText": "Which device is used to display information?",
+      "options": ["Monitor", "Mouse", "Keyboard", "Speaker"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "comp10",
+      "questionText": "What is BIOS?",
+      "options": ["Basic Input Output System", "Binary Input Output System", "Basic Internal Operating System", "Binary Internal Operating System"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "comp11",
+      "questionText": "Which device controls the movement of the cursor on screen?",
+      "options": ["Mouse", "Keyboard", "Printer", "Monitor"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "comp12",
+      "questionText": "Which of the following is non-volatile memory?",
+      "options": ["RAM", "ROM", "Cache", "Register"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "comp13",
+      "questionText": "What is the function of ALU?",
+      "options": ["Arithmetic and Logical Operations", "Input and Output", "Data Storage", "Data Transfer"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "comp14",
+      "questionText": "Which of the following is an output device?",
+      "options": ["Monitor", "Keyboard", "Mouse", "Scanner"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "comp15",
+      "questionText": "What does RAM stand for?",
+      "options": ["Read Access Memory", "Random Access Memory", "Run Assembly Memory", "Read Allowed Memory"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "comp16",
+      "questionText": "Which part of the computer carries out program instructions?",
+      "options": ["Control Unit", "ALU", "Memory", "Input Device"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "comp17",
+      "questionText": "What is the binary number system used for?",
+      "options": ["Text Encoding", "Machine-level Data", "Networking", "Programming Languages"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "comp18",
+      "questionText": "Which of the following numbers is the base of the binary system?",
+      "options": ["2", "8", "10", "16"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "comp19",
+      "questionText": "Which of the following connects computers and allows communication?",
+      "options": ["CPU", "GPU", "Network", "OS"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "comp20",
+      "questionText": "Which device presents data visually?",
+      "options": ["Monitor", "Speaker", "Joystick", "Microphone"],
+      "correctOptionIndex": 0
+    }
+  ],
+  "Networking": [
+    {
+      "questionId": "net1",
+      "questionText": "What is a computer network?",
+      "options": [
+        "A device used to display information on a computer screen",
+        "A collection of interconnected computers and devices that can communicate and share resources",
+        "A type of software used to create documents",
+        "Physical casing for internal components"
+      ],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "net2",
+      "questionText": "How many layers does the OSI model have?",
+      "options": ["4", "5", "6", "7"],
+      "correctOptionIndex": 3
+    },
+    {
+      "questionId": "net3",
+      "questionText": "Which protocol is used to send email?",
+      "options": ["FTP", "SMTP", "DNS", "HTTP"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "net4",
+      "questionText": "IP stands for?",
+      "options": ["Internet Protocol", "Internal Process", "Internet Program", "Interconnected Protocol"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "net5",
+      "questionText": "Which device connects multiple networks together?",
+      "options": ["Hub", "Switch", "Router", "Repeater"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "net6",
+      "questionText": "Which layer is responsible for routing?",
+      "options": ["Physical Layer", "Network Layer", "Transport Layer", "Application Layer"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "net7",
+      "questionText": "What is DHCP used for?",
+      "options": [
+        "Assign IP addresses dynamically",
+        "Connect two devices directly",
+        "Convert domain names into IP addresses",
+        "Routing between networks"
+      ],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "net8",
+      "questionText": "Which topology is used in Ethernet LANs?",
+      "options": ["Ring", "Star", "Bus", "Mesh"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "net9",
+      "questionText": "MAC address is unique to?",
+      "options": [
+        "Physical network interface",
+        "IP address",
+        "Port number",
+        "Protocol type"
+      ],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "net10",
+      "questionText": "What does HTTP stand for?",
+      "options": [
+        "HyperText Transfer Protocol",
+        "HyperText Transport Protocol",
+        "Hyperlink Transfer Protocol",
+        "Hyperlink Transport Protocol"
+      ],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "net11",
+      "questionText": "What is the maximum length of an IPv4 address?",
+      "options": ["32 bits", "64 bits", "128 bits", "256 bits"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "net12",
+      "questionText": "Which protocol converts domain names to IP addresses?",
+      "options": ["FTP", "DNS", "HTTP", "TCP"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "net13",
+      "questionText": "What device is known as a multiport repeater?",
+      "options": ["Switch", "Hub", "Router", "Bridge"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "net14",
+      "questionText": "What is the function of a firewall?",
+      "options": [
+        "Block unauthorized access",
+        "Speed up data transmission",
+        "Process routing tables",
+        "Convert IP addresses"
+      ],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "net15",
+      "questionText": "Which of the following is a wireless networking technology?",
+      "options": ["Ethernet", "Bluetooth", "Fiber Optic", "Coaxial"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "net16",
+      "questionText": "What is a subnet mask used for?",
+      "options": [
+        "Divide IP addresses into networks",
+        "Encrypt data",
+        "Map domain names",
+        "Detect network errors"
+      ],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "net17",
+      "questionText": "Which port is used by HTTP?",
+      "options": ["21", "80", "443", "110"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "net18",
+      "questionText": "What protocol is used for secure communication over the Internet?",
+      "options": ["HTTP", "FTP", "HTTPS", "SMTP"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "net19",
+      "questionText": "What layer of OSI model defines the electrical signals?",
+      "options": [
+        "Physical Layer",
+        "Data Link Layer",
+        "Network Layer",
+        "Transport Layer"
+      ],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "net20",
+      "questionText": "What protocol is used to send emails?",
+      "options": ["SMTP", "HTTP", "FTP", "SSH"],
+      "correctOptionIndex": 0
+    }
+  ],
+  "WebDevelopment": [
+    {
+      "questionId": "web1",
+      "questionText": "What does HTML stand for?",
+      "options": [
+        "HyperText Markup Language",
+        "Hyperlink Text Management Language",
+        "High-level Text Markup",
+        "Home Tool Markup Language"
+      ],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "web2",
+      "questionText": "Which language is primarily used for styling web pages?",
+      "options": ["HTML", "JavaScript", "CSS", "Python"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "web3",
+      "questionText": "Which tag is used to create a hyperlink in HTML?",
+      "options": ["<a>", "<link>", "<href>", "<url>"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "web4",
+      "questionText": "What is the correct HTML element for inserting a line break?",
+      "options": ["<break>", "<br>", "<lb>", "<line>"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "web5",
+      "questionText": "Which JavaScript function is used to add an event listener?",
+      "options": ["addEventListener()", "attachEvent()", "setEvent()", "listenEvent()"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "web6",
+      "questionText": "What is the purpose of the CSS box model?",
+      "options": [
+        "Defines how HTML elements are displayed",
+        "Specifies color schemes for a page",
+        "Describes the layout and design of each element",
+        "Manages JavaScript events"
+      ],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "web7",
+      "questionText": "Which HTTP status code represents 'Not Found'?",
+      "options": ["200", "301", "404", "500"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "web8",
+      "questionText": "Which property is used in CSS to change the font of an element?",
+      "options": ["font-style", "font-family", "font-weight", "text-style"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "web9",
+      "questionText": "Which of the following is NOT a framework for front-end development?",
+      "options": ["Angular", "React", "Django", "Vue"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "web10",
+      "questionText": "Which attribute specifies an alternate text for an image if the image cannot be displayed?",
+      "options": ["alt", "src", "title", "href"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "web11",
+      "questionText": "What does JSON stand for?",
+      "options": [
+        "JavaScript Object Notation",
+        "Java Standard Output Notation",
+        "JavaScript Output Name",
+        "Java Standard Object Name"
+      ],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "web12",
+      "questionText": "Which tag is used for the largest heading in HTML?",
+      "options": ["<h6>", "<h1>", "<head>", "<header>"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "web13",
+      "questionText": "Which is NOT a HTTP method?",
+      "options": ["GET", "POST", "FETCH", "DELETE"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "web14",
+      "questionText": "Which attribute is used to specify inline styles?",
+      "options": ["style", "class", "id", "font"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "web15",
+      "questionText": "Which protocol does the web use by default?",
+      "options": ["FTP", "HTTP", "SMTP", "TCP"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "web16",
+      "questionText": "Which CSS property controls the text size?",
+      "options": ["font-style", "text-size", "font-size", "text-style"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "web17",
+      "questionText": "Which tag defines a paragraph in HTML?",
+      "options": ["<p>", "<para>", "<pg>", "<par>"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "web18",
+      "questionText": "Which JavaScript symbol is used for comments?",
+      "options": ["//", "/* */", "Both", "#"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "web19",
+      "questionText": "Which HTML element is used to embed JavaScript code?",
+      "options": ["<js>", "<scripting>", "<script>", "<javascript>"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "web20",
+      "questionText": "What does CSS stand for?",
+      "options": [
+        "Creative Style Sheets",
+        "Cascading Style Sheets",
+        "Computing Style Sheets",
+        "Colorful Style Sheets"
+      ],
+      "correctOptionIndex": 1
+    }
+  ],
+  "ReactJs": [
+    {
+      "questionId": "react1",
+      "questionText": "What is React primarily used for?",
+      "options": ["Styling web pages", "Building user interfaces", "Managing databases", "Server-side routing"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "react2",
+      "questionText": "What does JSX stand for?",
+      "options": ["JavaScript XML", "Java Syntax Extension", "JavaScript Extension", "Java Standard XML"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "react3",
+      "questionText": "Which method is used to render React elements in class components?",
+      "options": ["display()", "render()", "show()", "output()"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "react4",
+      "questionText": "What is a functional component in React?",
+      "options": [
+        "A JavaScript function that returns React elements",
+        "A CSS style component",
+        "A function that returns data",
+        "A deprecated approach"
+      ],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "react5",
+      "questionText": "How do you pass data from a parent component to a child component?",
+      "options": ["Props", "State", "Context", "Reducer"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "react6",
+      "questionText": "Which hook is used to manage local state in functional components?",
+      "options": ["useEffect", "useState", "useReducer", "useContext"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "react7",
+      "questionText": "What is the purpose of useEffect hook?",
+      "options": [
+        "To perform side effects in function components",
+        "To manage state",
+        "To define a new component",
+        "To render JSX"
+      ],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "react8",
+      "questionText": "Which tool is commonly used to create a new React project?",
+      "options": ["npm start", "npx create-react-app", "npm install react", "node create-react"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "react9",
+      "questionText": "What is the virtual DOM?",
+      "options": [
+        "A real browser DOM",
+        "A lightweight copy of the actual DOM",
+        "An API",
+        "A database"
+      ],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "react10",
+      "questionText": "Which of the following is a correct way to write a React component?",
+      "options": [
+        "function Hello() { return <h1>Hello World</h1>; }",
+        "function Hello() { console.log('Hello'); }",
+        "var Hello = 'Hello'",
+        "var Hello = function {}"
+      ],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "react11",
+      "questionText": "How do you handle events in React?",
+      "options": [
+        "Using the ‘onclick’ attribute",
+        "Using camelCase event handlers like onClick",
+        "Using inline JavaScript",
+        "Using event listeners in plain JS"
+      ],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "react12",
+      "questionText": "What is the state in React?",
+      "options": [
+        "Static data",
+        "Data that changes over time",
+        "A method",
+        "An HTML attribute"
+      ],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "react13",
+      "questionText": "What does the setState function do?",
+      "options": [
+        "Immediately changes the state",
+        "Schedules an update to the component's state",
+        "Deletes the state",
+        "Creates a new component"
+      ],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "react14",
+      "questionText": "What is a key used for in React lists?",
+      "options": [
+        "To identify elements uniquely",
+        "To add styles",
+        "To link to routes",
+        "To fetch data"
+      ],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "react15",
+      "questionText": "Which of these hooks is used for global state management?",
+      "options": ["useState", "useReducer", "useContext", "useEffect"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "react16",
+      "questionText": "How can you optimize performance in React?",
+      "options": [
+        "Using memoization",
+        "Avoiding inline functions",
+        "Splitting large components",
+        "All of the above"
+      ],
+      "correctOptionIndex": 3
+    },
+    {
+      "questionId": "react17",
+      "questionText": "What is JSX?",
+      "options": [
+        "A CSS preprocessor",
+        "JavaScript XML syntax extension",
+        "A library",
+        "A framework"
+      ],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "react18",
+      "questionText": "Which attribute must be used when rendering lists in React?",
+      "options": ["id", "key", "name", "value"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "react19",
+      "questionText": "Which of the following is NOT a React lifecycle method?",
+      "options": ["componentDidMount", "useEffect", "render", "init"],
+      "correctOptionIndex": 3
+    },
+    {
+      "questionId": "react20",
+      "questionText": "What is Prop drilling?",
+      "options": [
+        "Passing props through several layers of components",
+        "Defining props in React",
+        "Rendering props dynamically",
+        "Using state instead of props"
+      ],
+      "correctOptionIndex": 0
+    }
+  ],
+  "TypeScript": [
+    {
+      "questionId": "ts1",
+      "questionText": "What is TypeScript?",
+      "options": [
+        "A programming language",
+        "A superset of JavaScript that adds static typing",
+        "A library for JavaScript",
+        "A framework for backend development"
+      ],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "ts2",
+      "questionText": "Which compiler option targets ECMAScript modules in TypeScript 5.x?",
+      "options": ["--module commonjs", "--module esm", "--module node20", "--module system"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "ts3",
+      "questionText": "What new feature in TypeScript 5.x allows generic types with an arbitrary number of type arguments?",
+      "options": ["Variadic kinds", "Template strings", "Partial types", "Mapped types"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "ts4",
+      "questionText": "What does the 'satisfies' operator ensure?",
+      "options": [
+        "Type coercion to a given type",
+        "Object conforms to a specified type while retaining literals",
+        "Converts objects to strings",
+        "Indicates deprecated types"
+      ],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "ts5",
+      "questionText": "Which language features does TypeScript add to JavaScript?",
+      "options": [
+        "Static typing and interfaces",
+        "Object-oriented programming only",
+        "Asynchronous programming only",
+        "None"
+      ],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "ts6",
+      "questionText": "What default strictness option is encouraged in latest TypeScript projects?",
+      "options": ["Non-strict", "Strict", "Optional", "Disabled"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "ts7",
+      "questionText": "What is the effect of 'import defer' syntax introduced in TypeScript 5.9?",
+      "options": [
+        "Imports a module only when accessed",
+        "Imports a module eagerly",
+        "Disables module imports",
+        "Imports all modules synchronously"
+      ],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "ts8",
+      "questionText": "What is the main purpose of the TypeScript compiler?",
+      "options": [
+        "Execute TypeScript code",
+        "Convert TypeScript to JavaScript",
+        "Debug TypeScript code",
+        "Run JavaScript modules"
+      ],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "ts9",
+      "questionText": "What tool often enhances TypeScript development with AI suggestions?",
+      "options": [
+        "GitHub Copilot",
+        "Visual Studio Code",
+        "Sublime Text",
+        "NetBeans"
+      ],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "ts10",
+      "questionText": "Which TypeScript feature helps reduce boilerplate while maintaining type safety?",
+      "options": [
+        "Contextual typing",
+        "Duck typing",
+        "Structural typing",
+        "Dynamic typing"
+      ],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "ts11",
+      "questionText": "Which feature helps avoid creating new function objects unnecessarily in TypeScript 5.8 optimizations?",
+      "options": [
+        "Cache instantiations on mappers",
+        "Object pooling",
+        "Function memoization",
+        "Proxy pattern"
+      ],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "ts12",
+      "questionText": "Which new stable `--module` option is meant to model Node.js v20 behavior?",
+      "options": ["node18", "node20", "nodenext", "commonjs"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "ts13",
+      "questionText": "TypeScript’s type checker helps to?",
+      "options": [
+        "Find runtime bugs",
+        "Perform compile-time type safety checks",
+        "Package JavaScript files",
+        "Format code"
+      ],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "ts14",
+      "questionText": "What extension do TypeScript files commonly use?",
+      "options": [".js", ".ts", ".tsx", ".jsx"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "ts15",
+      "questionText": "Which of these is true for TypeScript?",
+      "options": [
+        "It gets executed directly",
+        "It needs compilation to JavaScript",
+        "It is a CSS preprocessor",
+        "It replaces HTML"
+      ],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "ts16",
+      "questionText": "Which editor provides the best TypeScript support?",
+      "options": ["Notepad", "VS Code", "Atom", "Emacs"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "ts17",
+      "questionText": "What does TypeScript’s incremental build help with?",
+      "options": [
+        "Faster compilation times",
+        "Backward compatibility",
+        "Runs old JavaScript code",
+        "Marks deprecated methods"
+      ],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "ts18",
+      "questionText": "Which TypeScript feature allows you to specify types for function parameters?",
+      "options": ["Annotations", "Generics", "Decorators", "Interfaces"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "ts19",
+      "questionText": "Which company developed TypeScript?",
+      "options": ["Google", "Microsoft", "Facebook", "Apple"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "ts20",
+      "questionText": "What is a major advantage of TypeScript over JavaScript?",
+      "options": [
+        "Faster runtime",
+        "Static typing with early error detection",
+        "No need for transpilation",
+        "Runs only in browsers"
+      ],
+      "correctOptionIndex": 1
+    }
+  ],
+  "NextJs": [
+    {
+      "questionId": "next1",
+      "questionText": "Next.js is a framework built on top of which JavaScript library?",
+      "options": ["Angular", "React", "Vue", "Ember"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "next2",
+      "questionText": "What rendering methods does Next.js support?",
+      "options": ["Server-side Rendering", "Static Site Generation", "Client-side Rendering", "All of the above"],
+      "correctOptionIndex": 3
+    },
+    {
+      "questionId": "next3",
+      "questionText": "Which folder in Next.js is responsible for routing?",
+      "options": ["src", "pages", "components", "assets"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "next4",
+      "questionText": "What command is used to create a new Next.js app?",
+      "options": ["npm init next-app", "npx create-next-app", "next new project", "npm create next"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "next5",
+      "questionText": "Which of these is a feature of Next.js for performance optimization?",
+      "options": ["Code splitting", "Minification", "Tree shaking", "All of the above"],
+      "correctOptionIndex": 3
+    },
+    {
+      "questionId": "next6",
+      "questionText": "How does Next.js improve SEO compared to React alone?",
+      "options": ["Pre-rendering", "Lazy loading", "Code bundling", "None of the above"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "next7",
+      "questionText": "What method does Next.js provide for fetching data at build time?",
+      "options": ["getServerSideProps", "getStaticProps", "getInitialProps", "fetchDataStatic"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "next8",
+      "questionText": "Which method fetches data at every request in Next.js?",
+      "options": ["getServerSideProps", "getStaticProps", "getInitialProps", "fetchServerData"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "next9",
+      "questionText": "What is Incremental Static Regeneration (ISR)?",
+      "options": [
+        "Updating static pages after build without full rebuild",
+        "Building static pages during build time only",
+        "Rendering pages on client side only",
+        "None of the above"
+      ],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "next10",
+      "questionText": "Which component optimizes images in Next.js?",
+      "options": ["ImageOptimization", "NextImage", "Image", "OptimizeImg"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "next11",
+      "questionText": "Which directive in Next.js marks a component to be client-rendered?",
+      "options": ["use client", "client render", "client only", "hydrate"],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "next12",
+      "questionText": "Which of the following is NOT true for Next.js routing?",
+      "options": [
+        "File-based routing",
+        "Supports dynamic routes",
+        "Requires manual routing configuration",
+        "Supports nested routes"
+      ],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "next13",
+      "questionText": "Next.js API routes allow you to?",
+      "options": [
+        "Write backend code in same project",
+        "Fetch data from external APIs",
+        "Does not support backend functions",
+        "Only support serverless functions"
+      ],
+      "correctOptionIndex": 0
+    },
+    {
+      "questionId": "next14",
+      "questionText": "Which of these is a feature of Next.js for CSS?",
+      "options": ["Global CSS", "CSS Modules", "Support for Sass", "All of the above"],
+      "correctOptionIndex": 3
+    },
+    {
+      "questionId": "next15",
+      "questionText": "How does Next.js handle JavaScript bundling?",
+      "options": [
+        "Bundles all code into a single file",
+        "Automatic code splitting per page",
+        "No bundling",
+        "User configures bundles manually"
+      ],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "next16",
+      "questionText": "Which file is needed to make a route accessible in Next.js?",
+      "options": ["index.tsx", "page.tsx", "root.tsx", "route.tsx"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "next17",
+      "questionText": "Next.js was created and is maintained by?",
+      "options": ["Facebook", "Google", "Vercel", "Microsoft"],
+      "correctOptionIndex": 2
+    },
+    {
+      "questionId": "next18",
+      "questionText": "Which method removes unused CSS in Next.js builds?",
+      "options": ["Code splitting", "CSS tree shaking", "PurgeCSS", "Unused CSS removal plugin"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "next19",
+      "questionText": "Which folder is typically used for storing static files in Next.js?",
+      "options": ["static", "public", "assets", "files"],
+      "correctOptionIndex": 1
+    },
+    {
+      "questionId": "next20",
+      "questionText": "Which of the following is the correct way to start a Next.js development server?",
+      "options": ["npm start", "npm run dev", "next start", "node server.js"],
+      "correctOptionIndex": 1
+    }
+  ]
+}
