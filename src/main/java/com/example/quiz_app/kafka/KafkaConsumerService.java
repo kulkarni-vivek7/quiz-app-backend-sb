@@ -4,15 +4,10 @@ import com.example.quiz_app.dao.AnswerSetDao;
 import com.example.quiz_app.exceptionClasses.NoAnswerSetFoundException;
 import com.example.quiz_app.models.AnswerSet;
 import com.example.quiz_app.models.Question;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.annotation.PostConstruct;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
-import java.io.InputStream;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
