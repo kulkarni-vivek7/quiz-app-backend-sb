@@ -1,5 +1,7 @@
 package com.example.quiz_app.kafka;
 
+import com.example.quiz_app.dao.AnswerSetDao;
+import com.example.quiz_app.exceptionClasses.NoAnswerSetFoundException;
 import com.example.quiz_app.models.AnswerSet;
 import com.example.quiz_app.models.Question;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -12,59 +14,42 @@ import org.springframework.stereotype.Service;
 import java.io.InputStream;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class KafkaConsumerService {
 
     private final ObjectMapper mapper = new ObjectMapper();
+    private final AnswerSetDao answerSetDao;
 
-    private JsonNode rootNode;
-
-    @PostConstruct
-    public void initialization() throws Exception {
-        // Load questions.json from classpath (src/main/resources)
-        ClassPathResource resource = new ClassPathResource("questions.json");
-        try (InputStream inputStream = resource.getInputStream()) {
-            rootNode = mapper.readTree(inputStream);
-        }
+    public KafkaConsumerService(AnswerSetDao answerSetDao) {
+        this.answerSetDao = answerSetDao;
     }
 
     @KafkaListener(topics = "student-answers", groupId = "quiz-group")
     public void consumeAnswers(String message) throws Exception {
         AnswerSet answerSet = mapper.readValue(message, AnswerSet.class);
-        List<Question> submittedQuestion = answerSet.getQuestions();
+        Optional<AnswerSet> answerSetOpt = answerSetDao.findAnswerSetByStudentId(answerSet.getStudentId());
 
-        int total = submittedQuestion.size();
+        if (answerSetOpt.isEmpty())
+        {
+            throw new NoAnswerSetFoundException("No stored answer set found for studentId: "+ answerSet.getStudentId());
+        }
+
+        List<Question> questions = answerSetOpt.get().getQuestions();
+
+        int total = questions.size();
 
         int correct = 0;
 
-        for (Question q : submittedQuestion) {
-            String qid = q.getQuestionId();
+        for (Question q : questions) {
 
-            int correctIndex = -1;
+            int correctIndex = q.getCorrectOptionIndex();
+            int chosenIndex = q.getChosenOptionIndex();
+            String chosenOpt = (chosenIndex >= 0 && chosenIndex < q.getOptions().size()) ? q.getOptions().get(chosenIndex) : "Invalid Choice";
+            String correctOpt = (correctIndex >= 0 && correctIndex < q.getOptions().size()) ? q.getOptions().get(correctIndex) : "Unknown";
 
-            if (rootNode != null) {
-                Iterator<String> fields = rootNode.fieldNames();
-                search:
-                while (fields.hasNext()) {
-                    String sub = fields.next();
-                    for (JsonNode questionNode : rootNode.get(sub)) {
-                        if (questionNode.get("questionId").asText().equals(qid))
-                        {
-                            correctIndex = questionNode.get("correctOptionIndex").asInt();
-                            break search;
-                        }
-                    }
-                }
-            }
-
-            String chosenOpt = q.getChosenOptionIndex() >= 0 && q.getChosenOptionIndex() < q.getOptions().size()
-                    ? q.getOptions().get(q.getChosenOptionIndex()) : "Invalid Choice";
-
-            String correctOpt = (correctIndex >= 0 && correctIndex < q.getOptions().size())
-                    ? q.getOptions().get(correctIndex) : "Unknown";
-
-            if (correctIndex == q.getChosenOptionIndex()) {
+            if (correctIndex == chosenIndex) {
                 correct++;
             }
 

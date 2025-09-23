@@ -10,7 +10,7 @@ import java.util.Map;
 public class InMemoryStudentRepository {
     private final Map<String, Student> students = new HashMap<>();
 
-    public void save(Student student) {
+    public void saveInHashMap(Student student) {
         students.put(student.getId(), student);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.quiz_app.serviceImpl;
 
+import com.example.quiz_app.enums.Subject;
 import com.example.quiz_app.models.Question;
 import com.example.quiz_app.service.MCQService;
 import com.example.quiz_app.service.QuestionLoaderService;
@@ -17,7 +18,7 @@ public class MCQServiceImpl implements MCQService {
     }
 
     @Override
-    public List<Question> getQuestionsForSubject(String subjectName, int count) throws Exception {
+    public List<Question> getQuestionsForSubject(Subject subjectName, int count) throws Exception {
         return questionLoaderService.getQuestionsBySubject(subjectName, count);
     }
 }

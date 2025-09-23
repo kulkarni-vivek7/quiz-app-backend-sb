@@ -1,5 +1,7 @@
 package com.example.quiz_app.serviceImpl;
 
+import com.example.quiz_app.dao.QuestionDao;
+import com.example.quiz_app.enums.Subject;
 import com.example.quiz_app.models.Question;
 import com.example.quiz_app.service.QuestionLoaderService;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -14,52 +16,51 @@ import java.util.*;
 @Component
 public class QuestionLoaderServiceImpl implements QuestionLoaderService {
 
-//    private static final String QUESTION_FILE_PATH = "../questions.json";
+    private final QuestionDao questionDao;
 
-    private final ObjectMapper mapper = new ObjectMapper();
-
-    private JsonNode rootNode;
-
-    private final Map<String, Integer> questionToCorrectIndex = new HashMap<>();
-
-    @PostConstruct
-    public void loadQuestions() throws Exception {
-        // Load questions.json from classpath (src/main/resources)
-        ClassPathResource resource = new ClassPathResource("questions.json");
-        try (InputStream inputStream = resource.getInputStream()) {
-            rootNode = mapper.readTree(inputStream);
-        }
-
-        for (Iterator<String> subjects = rootNode.fieldNames(); subjects.hasNext();)
-        {
-            String subject = subjects.next();
-            for (JsonNode qNode : rootNode.get(subject)) {
-                String qid = qNode.get("questionId").asText();
-                int correctIdx = qNode.get("correctOptionIndex").asInt();
-                questionToCorrectIndex.put(qid, correctIdx);
-            }
-        }
+    public QuestionLoaderServiceImpl(QuestionDao questionDao) {
+        this.questionDao = questionDao;
     }
 
-    public Integer getCorrectOptionIndex(String questionId)
-    {
-        return questionToCorrectIndex.get(questionId);
-    }
+//    @PostConstruct
+//    public void loadQuestions() throws Exception {
+//        // Load questions.json from classpath (src/main/resources)
+//        ClassPathResource resource = new ClassPathResource("questions.json");
+//        try (InputStream inputStream = resource.getInputStream()) {
+//            rootNode = mapper.readTree(inputStream);
+//        }
+//
+//        for (Iterator<String> subjects = rootNode.fieldNames(); subjects.hasNext();)
+//        {
+//            String subject = subjects.next();
+//            for (JsonNode qNode : rootNode.get(subject)) {
+//                String qid = qNode.get("questionId").asText();
+//                int correctIdx = qNode.get("correctOptionIndex").asInt();
+//                questionToCorrectIndex.put(qid, correctIdx);
+//            }
+//        }
+//    }
+
+//    public Integer getCorrectOptionIndex(String questionId)
+//    {
+//        return questionToCorrectIndex.get(questionId);
+//    }
 
     @Override
-    public List<Question> getQuestionsBySubject(String subject, int count) throws Exception {
-        List<Question> allQuestions = new ArrayList<>();
+    public List<Question> getQuestionsBySubject(Subject subject, int count) throws Exception {
+        List<Question> allQuestions = questionDao.findAllQuestionsBySubjectName(subject);
 
-        if (rootNode == null || rootNode.get(subject) == null) {
-            return allQuestions;
-        }
+//        if (rootNode == null || rootNode.get(subject) == null) {
+//            return allQuestions;
+//        }
 
-        Iterator<JsonNode> iterator = rootNode.get(subject).elements();
-        while (iterator.hasNext()) {
-            JsonNode node = iterator.next();
-            Question q = mapper.treeToValue(node, Question.class);
-            allQuestions.add(q);
-        }
+
+//        Iterator<JsonNode> iterator = rootNode.get(subject).elements();
+//        while (iterator.hasNext()) {
+//            JsonNode node = iterator.next();
+//            Question q = mapper.treeToValue(node, Question.class);
+//            allQuestions.add(q);
+//        }
 
         // Shuffle the list to randomize questions order
         Collections.shuffle(allQuestions);

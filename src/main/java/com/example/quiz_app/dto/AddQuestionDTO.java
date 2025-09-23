@@ -6,9 +6,9 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class QuestionWithoutAnswerDTO {
-    private String questionId;
+public class AddQuestionDTO {
     private String questionText;
     private List<String> options;
+    private int correctOptionIndex;
     private Subject subject;
 }
