@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/student")
+@CrossOrigin("http://localhost:5173")
 public class StudentController {
 
     private final StudentService studentService;
@@ -30,7 +31,7 @@ public class StudentController {
     }
 
     @PostMapping("/answer")
-    public ResponseEntity<String> submitAnswers(@RequestBody AnswerSet answerSet)
+    public ResponseEntity<ResponseStructure<AnswerSet>> submitAnswers(@RequestBody AnswerSet answerSet)
         throws Exception {
 
         return studentService.submitAnswers(answerSet);

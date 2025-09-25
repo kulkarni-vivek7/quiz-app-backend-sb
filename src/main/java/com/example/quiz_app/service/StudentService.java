@@ -14,7 +14,7 @@ import java.util.List;
 public interface StudentService {
     ResponseEntity<List<QuestionWithoutAnswerDTO>> enrollStudent(@Valid StudentDTO studentDTO) throws Exception;
 
-    ResponseEntity<String> submitAnswers(AnswerSet answerSet) throws Exception ;
+    ResponseEntity<ResponseStructure<AnswerSet>> submitAnswers(AnswerSet answerSet) throws Exception ;
 
     ResponseEntity<ResponseStructure<?>> getAllStudents(String searchParam, String searchValue, int page, int limit);
 

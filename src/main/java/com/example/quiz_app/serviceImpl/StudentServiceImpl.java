@@ -34,7 +34,6 @@ public class StudentServiceImpl implements StudentService {
     private final StudentDao studentDao;
     private final MCQService mcqService;
     private final KafkaProducerService kafkaProducerService;
-//    private final QuestionLoaderServiceImpl questionLoaderServiceImpl;
     private final QuestionDao questionDao;
     private final ObjectMapper mapper = new ObjectMapper();
     private final AnswerSetDao answerSetDao;
@@ -52,7 +51,7 @@ public class StudentServiceImpl implements StudentService {
     public ResponseEntity<List<QuestionWithoutAnswerDTO>> enrollStudent(StudentDTO studentDTO) throws Exception {
 
         Student student = new Student();
-        student.setId(studentDTO.getId());
+//        student.setId(studentDTO.getId());
         student.setName(studentDTO.getName());
         student.setAge(studentDTO.getAge());
         student.setEmail(studentDTO.getEmail());
@@ -61,9 +60,9 @@ public class StudentServiceImpl implements StudentService {
 
         studentDao.saveInHashMap(student);
 
-        kafkaProducerService.send("student-enrollments", studentDTO.getId(), mapper.writeValueAsString(studentDTO));
+        Student savedStudent = studentDao.saveInMongoDb(student);
 
-        studentDao.saveInMongoDb(student);
+        kafkaProducerService.send("student-enrollments", savedStudent.getId(), mapper.writeValueAsString(savedStudent));
 
         List<Question> questions = mcqService.getQuestionsForSubject(student.getSubject(), 5);
 
@@ -83,7 +82,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public ResponseEntity<String> submitAnswers(AnswerSet answerSet) throws Exception  {
+    public ResponseEntity<ResponseStructure<AnswerSet>> submitAnswers(AnswerSet answerSet) throws Exception  {
 
         for (Question question : answerSet.getQuestions())
         {
@@ -96,7 +95,12 @@ public class StudentServiceImpl implements StudentService {
 
         kafkaProducerService.send("student-answers", answerSet.getStudentId(), mapper.writeValueAsString(answerSet));
 
-        return ResponseEntity.ok("Answers Submitted!");
+        ResponseStructure<AnswerSet> res = new ResponseStructure<>();
+        res.setStatus(HttpStatus.CREATED.value());
+        res.setMessage("AnswerSet Submitted Successfully");
+        res.setBody(answerSet);
+
+        return new ResponseEntity<>(res, HttpStatus.CREATED);
     }
 
 //    GET Methods ----------------------------------------------------------------------------------

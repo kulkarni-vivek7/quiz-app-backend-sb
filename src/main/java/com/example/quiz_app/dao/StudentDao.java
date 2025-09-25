@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface StudentDao {
     void saveInHashMap(Student student);
 
-    void saveInMongoDb(Student student);
+    Student saveInMongoDb(Student student);
 
     Optional<Student> findStudentById(String searchValue);
 

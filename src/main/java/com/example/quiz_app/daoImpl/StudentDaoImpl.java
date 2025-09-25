@@ -28,8 +28,8 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public void saveInMongoDb(Student student) {
-        studentRepository.save(student);
+    public Student saveInMongoDb(Student student) {
+        return studentRepository.save(student);
     }
 
     @Override
