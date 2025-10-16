@@ -21,14 +21,14 @@ public class KafkaConsumerService {
         this.answerSetDao = answerSetDao;
     }
 
-    @KafkaListener(topics = "student-answers", groupId = "quiz-group")
+    @KafkaListener(topics = "candidate-answers", groupId = "quiz-group")
     public void consumeAnswers(String message) throws Exception {
         AnswerSet answerSet = mapper.readValue(message, AnswerSet.class);
-        Optional<AnswerSet> answerSetOpt = answerSetDao.findAnswerSetByStudentId(answerSet.getStudentId());
+        Optional<AnswerSet> answerSetOpt = answerSetDao.findAnswerSetByCandidateId(answerSet.getCandidateId());
 
         if (answerSetOpt.isEmpty())
         {
-            throw new NoAnswerSetFoundException("No stored answer set found for studentId: "+ answerSet.getStudentId());
+            throw new NoAnswerSetFoundException("No stored answer set found for studentId: "+ answerSet.getCandidateId());
         }
 
         List<Question> questions = answerSetOpt.get().getQuestions();
@@ -52,7 +52,7 @@ public class KafkaConsumerService {
                     q.getQuestionText(), chosenOpt, correctOpt);
         }
 
-        System.out.printf("Student %s scored %d/%d%n",
-                answerSet.getStudentId(), correct, total);
+        System.out.printf("Candidate %s scored %d/%d%n",
+                answerSet.getCandidateId(), correct, total);
     }
 }

@@ -24,12 +24,17 @@ public class AnswerSetDaoImpl implements AnswerSetDao {
     }
 
     @Override
-    public Optional<AnswerSet> findAnswerSetByStudentId(String studentId) {
-        return answerSetRepository.findByStudentId(studentId);
+    public Optional<AnswerSet> findAnswerSetByCandidateId(String candidateId) {
+        return answerSetRepository.findByCandidateId(candidateId);
     }
 
     @Override
     public Page<AnswerSet> findAllAnswerSets(Pageable pageable) {
         return answerSetRepository.findAll(pageable);
+    }
+
+    @Override
+    public void deleteAnswerSet(AnswerSet answerSet) {
+        answerSetRepository.delete(answerSet);
     }
 }

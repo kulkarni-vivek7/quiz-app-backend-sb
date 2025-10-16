@@ -10,6 +10,6 @@ import java.util.List;
 @Document
 public class AnswerSet {
     @Id
-    private String studentId;
+    private String candidateId;
     private List<Question> questions;
 }

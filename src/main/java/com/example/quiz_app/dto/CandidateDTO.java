@@ -5,10 +5,7 @@ import jakarta.validation.constraints.*;
 import lombok.Data;
 
 @Data
-public class StudentDTO {
-    @NotBlank
-    private String id;
-
+public class CandidateDTO {
     @NotBlank
     private String name;
 

@@ -6,5 +6,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 
 public interface AnswerSetRepository extends MongoRepository<AnswerSet, String> {
-    Optional<AnswerSet> findByStudentId(String studentId);
+    Optional<AnswerSet> findByCandidateId(String studentId);
 }

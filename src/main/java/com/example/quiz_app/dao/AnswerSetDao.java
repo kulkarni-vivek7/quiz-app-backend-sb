@@ -11,7 +11,9 @@ import java.util.Optional;
 public interface AnswerSetDao {
     void saveAnswerSet(AnswerSet answerSet);
 
-    Optional<AnswerSet> findAnswerSetByStudentId(String studentId);
+    Optional<AnswerSet> findAnswerSetByCandidateId(String candidate);
 
     Page<AnswerSet> findAllAnswerSets(Pageable pageable);
+
+    void deleteAnswerSet(AnswerSet answerSet);
 }

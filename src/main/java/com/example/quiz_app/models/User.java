@@ -1,18 +1,22 @@
 package com.example.quiz_app.models;
 
-import com.example.quiz_app.enums.Subject;
+import com.example.quiz_app.enums.UserRole;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Data
 @Document
-public class Student {
+@Data
+public class User {
+
     @Id
     private String id;
+
     private String name;
-    private int age;
+
     private String email;
-    private String phone;
-    private Subject subject;
+
+    private Long phone;
+
+    private UserRole role;
 }
