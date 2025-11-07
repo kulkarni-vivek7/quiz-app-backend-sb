@@ -42,4 +42,9 @@ public class QuizInviteDaoImpl implements QuizInviteDao {
     public Page<QuizInvite> findQuizInvitesByUsedTrue(Pageable pageable) {
         return repository.findByUsedTrue(pageable);
     }
+
+    @Override
+    public Page<QuizInvite> findQuizInvitesByUsedFalse(Pageable pageable) {
+        return repository.findByUsedFalse(pageable);
+    }
 }

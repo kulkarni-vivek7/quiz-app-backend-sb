@@ -8,6 +8,7 @@ import java.util.List;
 @Data
 public class QuizStartDTO {
     private String candidateId;
-    private Subject subject;
+    private List<Subject> subject;
+    private String quizTimeLimit;
     private List<QuestionWithoutAnswerDTO> questions;
 }

@@ -13,4 +13,6 @@ public interface QuizInviteRepository extends MongoRepository<QuizInvite, String
     Optional<QuizInvite> findByCandidateId(String candidateId);
 
     Page<QuizInvite> findByUsedTrue(Pageable pageable);
+
+    Page<QuizInvite> findByUsedFalse(Pageable pageable);
 }

@@ -1,5 +1,6 @@
 package com.example.quiz_app.dao;
 
+import com.example.quiz_app.enums.QuestionType;
 import com.example.quiz_app.enums.Subject;
 import com.example.quiz_app.models.Question;
 import org.springframework.data.domain.Page;
@@ -21,4 +22,10 @@ public interface QuestionDao {
     Page<Question> findAllQuestionsBySubject(Subject subject, Pageable pageable);
 
     Page<Question> findAllQuestions(Pageable pageable);
+
+    Optional<Question> findByQuestionId(String questionId);
+
+    Page<Question> findByQuestionType(QuestionType questionType, Pageable pageable);
+
+    Page<Question> findAllQuestionsByQuestionText(String searchValue, Pageable pageable);
 }

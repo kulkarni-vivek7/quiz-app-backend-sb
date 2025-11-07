@@ -1,6 +1,7 @@
 package com.example.quiz_app.daoImpl;
 
 import com.example.quiz_app.dao.QuestionDao;
+import com.example.quiz_app.enums.QuestionType;
 import com.example.quiz_app.enums.Subject;
 import com.example.quiz_app.models.Question;
 import com.example.quiz_app.repository.QuestionRepository;
@@ -43,5 +44,20 @@ public class QuestionDaoImpl implements QuestionDao {
     @Override
     public Page<Question> findAllQuestions(Pageable pageable) {
         return repository.findAll(pageable);
+    }
+
+    @Override
+    public Optional<Question> findByQuestionId(String questionId) {
+        return repository.findByQuestionId(questionId);
+    }
+
+    @Override
+    public Page<Question> findByQuestionType(QuestionType questionType, Pageable pageable) {
+        return repository.findByQuestionType(questionType, pageable);
+    }
+
+    @Override
+    public Page<Question> findAllQuestionsByQuestionText(String searchValue, Pageable pageable) {
+        return repository.findByQuestionTextContainingIgnoreCase(searchValue, pageable);
     }
 }

@@ -3,6 +3,8 @@ package com.example.quiz_app.serviceImpl;
 import com.example.quiz_app.dao.*;
 import com.example.quiz_app.dto.CandidateDTO;
 import com.example.quiz_app.dto.EnrollmentResponseDTO;
+import com.example.quiz_app.dto.QuestionWithoutAnswerDTO;
+import com.example.quiz_app.enums.QuestionType;
 import com.example.quiz_app.enums.Subject;
 import com.example.quiz_app.exceptionClasses.*;
 import com.example.quiz_app.inviteMailSender.InviteEmailSenderService;
@@ -36,8 +38,9 @@ public class UserServiceImpl implements UserService {
     private final AnswerSetDao answerSetDao;
     private final UserDao userDao;
     private final LoginDao loginDao;
+    private final QuestionDao questionDao;
 
-    public UserServiceImpl(CandidateDao candidateDao, KafkaProducerService kafkaProducerService, InviteEmailSenderService inviteEmailSenderService, QuizInviteDao quizInviteDao, AnswerSetDao answerSetDao, UserDao userDao, LoginDao loginDao) {
+    public UserServiceImpl(CandidateDao candidateDao, KafkaProducerService kafkaProducerService, InviteEmailSenderService inviteEmailSenderService, QuizInviteDao quizInviteDao, AnswerSetDao answerSetDao, UserDao userDao, LoginDao loginDao, QuestionDao questionDao) {
         this.candidateDao = candidateDao;
         this.kafkaProducerService = kafkaProducerService;
         this.inviteEmailSenderService = inviteEmailSenderService;
@@ -45,13 +48,14 @@ public class UserServiceImpl implements UserService {
         this.answerSetDao = answerSetDao;
         this.userDao = userDao;
         this.loginDao = loginDao;
+        this.questionDao = questionDao;
     }
 
     @Value("${app.frontend.quiz-url}")
     private String quizFrontendUrl;
 
     @Override
-    public ResponseEntity<EnrollmentResponseDTO> enrollStudent(CandidateDTO candidateDTO) throws Exception {
+    public ResponseEntity<ResponseStructure<Candidate>> enrollStudent(CandidateDTO candidateDTO) throws Exception {
 
         Optional<LoginDetails> loginDetailsOptional1 = loginDao.findByEmail(candidateDTO.getEmail());
 
@@ -106,28 +110,12 @@ public class UserServiceImpl implements UserService {
         invite.setUsed(Boolean.FALSE);
         quizInviteDao.save(invite);
 
-        String link = quizFrontendUrl + "?token=" + token;
-        EnrollmentResponseDTO responseDTO = new EnrollmentResponseDTO();
-        responseDTO.setCandidateId(savedCandidate.getId());
-        responseDTO.setSubject(savedCandidate.getSubject());
-        responseDTO.setInviteLink(link);
+        ResponseStructure<Candidate> res = new ResponseStructure<>();
+        res.setStatus(HttpStatus.CREATED.value());
+        res.setMessage("Candidate Enrolled Successfully");
+        res.setBody(savedCandidate);
 
-        // Try to email the invite link to the candidate; do not fail enrollment if email sending fails
-        try {
-            if (savedCandidate.getEmail() != null && !savedCandidate.getEmail().isBlank()) {
-                inviteEmailSenderService.sendInviteEmail(
-                        savedCandidate.getEmail(),
-                        savedCandidate.getName(),
-                        savedCandidate.getSubject(),
-                        link
-                );
-            }
-        } catch (MessagingException e) {
-            // Swallow or log; keeping enrollment successful.
-            e.printStackTrace();
-        }
-
-        return ResponseEntity.ok(responseDTO);
+        return new ResponseEntity<>(res, HttpStatus.CREATED);
     }
 
     @Override
@@ -206,18 +194,78 @@ public class UserServiceImpl implements UserService {
                 return ResponseEntity.ok(res);
             }
         }
-        Pageable pageable = PageRequest.of(page, limit, Sort.by("name").ascending());
-        Page<Candidate> students = candidateDao.findAllCandidates(pageable);
-
-        if (students.isEmpty())
+        else if (searchValue.equalsIgnoreCase("quiz_completed"))
         {
-            throw new CandidateNotFoundException("No Students Registered Yet");
+            Pageable pageable = PageRequest.of(page, limit);
+
+            Page<QuizInvite> invites = quizInviteDao.findQuizInvitesByUsedTrue(pageable);
+
+            if (invites.isEmpty())
+            {
+                throw new QuizInviteNotFoundException("No Quiz Invites Found with Used True");
+            }
+
+            List<String> candidateIds = invites.getContent()
+                    .stream()
+                    .map(QuizInvite::getCandidateId)
+                    .collect(Collectors.toList());
+
+            List<Candidate> candidates = candidateDao.findAllCandidatesById(candidateIds);
+
+            if (candidates.isEmpty())
+            {
+                throw new CandidateNotFoundException("No Candidates Found for Quiz Invites with Used True");
+            }
+
+            Pageable candidatePageable = PageRequest.of(page, limit, Sort.by("name").ascending());
+
+            Page<Candidate> candidatePage = new PageImpl<>(
+                    candidates,
+                    candidatePageable,
+                    invites.getTotalElements()
+            );
+
+            ResponseStructure<Page<Candidate>> res = new ResponseStructure<>();
+            res.setStatus(HttpStatus.OK.value());
+            res.setMessage("All Quiz Completed Candidates Found Successfully");
+            res.setBody(candidatePage);
+
+            return ResponseEntity.ok(res);
         }
+
+        Pageable pageable = PageRequest.of(page, limit);
+
+        Page<QuizInvite> invites = quizInviteDao.findQuizInvitesByUsedFalse(pageable);
+
+        if (invites.isEmpty())
+        {
+            throw new QuizInviteNotFoundException("No Quiz Invites Found with Used False");
+        }
+
+        List<String> candidateIds = invites.getContent()
+                .stream()
+                .map(QuizInvite::getCandidateId)
+                .collect(Collectors.toList());
+
+        List<Candidate> candidates = candidateDao.findAllCandidatesById(candidateIds);
+
+        if (candidates.isEmpty())
+        {
+            throw new CandidateNotFoundException("No Candidates Found for Quiz Invites with Used False");
+        }
+
+        Pageable candidatePageable = PageRequest.of(page, limit, Sort.by("name").ascending());
+
+        Page<Candidate> candidatePage = new PageImpl<>(
+                candidates,
+                candidatePageable,
+                invites.getTotalElements()
+        );
 
         ResponseStructure<Page<Candidate>> res = new ResponseStructure<>();
         res.setStatus(HttpStatus.OK.value());
-        res.setMessage("All Registered Students Found Successfully");
-        res.setBody(students);
+        res.setMessage("All Quiz Pending Candidates Found Successfully");
+        res.setBody(candidatePage);
 
         return ResponseEntity.ok(res);
     }
@@ -281,46 +329,132 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<ResponseStructure<Page<Candidate>>> getCandidatesByQuizInviteUsedTrue(int page, int limit) {
+    public ResponseEntity<ResponseStructure<?>> findAllQuestions(String searchParam, String searchValue, int page, int limit) {
+
+        if (searchParam.equalsIgnoreCase("questionid") || searchParam.equalsIgnoreCase("questiontext") ||
+                searchParam.equalsIgnoreCase("questiontype") || searchParam.equalsIgnoreCase("subject")) {
+
+            if (searchParam.equalsIgnoreCase("questionid")) {
+                Optional<Question> questionOpt = questionDao.findByQuestionId(searchValue);
+                if (questionOpt.isEmpty()) {
+                    throw new QuestionsNotFoundException("Question not found with id: " + searchValue);
+                }
+
+                ResponseStructure<QuestionWithoutAnswerDTO> response = new ResponseStructure<>();
+                response.setBody(QuestionWithoutAnswerDTO.fromQuestion(questionOpt.get()));
+                response.setMessage("Question retrieved successfully");
+                response.setStatus(HttpStatus.OK.value());
+
+                return ResponseEntity.ok(response);
+            }
+            else if (searchParam.equalsIgnoreCase("questiontext")) {
+                Pageable pageable = PageRequest.of(page, limit);
+                Page<Question> questions = questionDao.findAllQuestionsByQuestionText(searchValue, pageable);
+
+                if (questions.isEmpty()) {
+                    throw new QuestionsNotFoundException("No Questions Found for Given Question Text");
+                }
+
+                ResponseStructure<Page<Question>> res = new ResponseStructure<>();
+                res.setStatus(HttpStatus.OK.value());
+                res.setMessage("All Questions Found Successfully for Given Question Text");
+                res.setBody(questions);
+
+                return ResponseEntity.ok(res);
+            }
+            else if (searchParam.equalsIgnoreCase("questiontype")) {
+
+                QuestionType questionType = QuestionType.valueOf(searchValue.toUpperCase());
+
+                Pageable pageable = PageRequest.of(page, limit);
+                Page<Question> questions = questionDao.findByQuestionType(questionType, pageable);
+
+                if (questions.isEmpty())
+                {
+                    throw new QuestionsNotFoundException("No Questions Found for Given Question Type");
+                }
+
+                ResponseStructure<Page<Question>> response = new ResponseStructure<>();
+                response.setStatus(HttpStatus.OK.value());
+                response.setMessage("All Questions Found Successfully for Given Question Type");
+                response.setBody(questions);
+
+                return ResponseEntity.ok(response);
+            }
+            else if (searchParam.equalsIgnoreCase("subject")) {
+
+                Subject subject = Subject.valueOf(searchValue);
+
+                Pageable pageable = PageRequest.of(page, limit);
+                Page<Question> questions = questionDao.findAllQuestionsBySubject(subject, pageable);
+
+                if (questions.isEmpty())
+                {
+                    throw new QuestionsNotFoundException("No Questions Found for Given Subject");
+                }
+
+                ResponseStructure<Page<Question>> res = new ResponseStructure<>();
+                res.setStatus(HttpStatus.OK.value());
+                res.setMessage("All Questions Found Successfully for Given Subject");
+                res.setBody(questions);
+
+                return ResponseEntity.ok(res);
+            }
+        }
 
         Pageable pageable = PageRequest.of(page, limit);
+        Page<Question> questionPage = questionDao.findAllQuestions(pageable);
 
-        Page<QuizInvite> invites = quizInviteDao.findQuizInvitesByUsedTrue(pageable);
+        ResponseStructure<Page<Question>> response = new ResponseStructure<>();
+        response.setBody(questionPage);
+        response.setMessage("All Questions retrieved successfully");
+        response.setStatus(HttpStatus.OK.value());
 
-        if (invites.isEmpty())
-        {
-            throw new QuizInviteNotFoundException("No Quiz Invites Found with Used True");
-        }
-
-        List<String> candidateIds = invites.getContent()
-                .stream()
-                .map(QuizInvite::getCandidateId)
-                .collect(Collectors.toList());
-
-        List<Candidate> candidates = candidateDao.findAllCandidatesById(candidateIds);
-
-        if (candidates.isEmpty())
-        {
-            throw new CandidateNotFoundException("No Candidates Found for Quiz Invites with Used True");
-        }
-
-        Pageable candidatePageable = PageRequest.of(page, limit, Sort.by("name").ascending());
-
-        Page<Candidate> candidatePage = new PageImpl<>(
-                candidates,
-                candidatePageable,
-                invites.getTotalElements()
-        );
-
-        ResponseStructure<Page<Candidate>> res = new ResponseStructure<>();
-        res.setStatus(HttpStatus.OK.value());
-        res.setMessage("All Candidates Found Successfully for Quiz Invites With Used True");
-        res.setBody(candidatePage);
-
-        return ResponseEntity.ok(res);
+        return ResponseEntity.ok(response);
     }
 
-//    DELETE Methods------------------------------------------------------------------------
+    //    PUT  Methods--------------------------------------------------------------------------
+
+    @Override
+    public ResponseEntity<EnrollmentResponseDTO> updateQuizTimeLimit(String candidateId, String timeLimitInMinutes) {
+
+        Candidate candidate = candidateDao.findCandidateById(candidateId).orElseThrow(() ->
+                new CandidateNotFoundException("Candidate Not Found for given Id"));
+
+        QuizInvite quizInvite = quizInviteDao.findByCandidateId(candidateId).orElseThrow(() ->
+                new QuizInviteNotFoundException("Quiz Invite Not Found for given Candidate Id"));
+
+        String timeLimitInMinutesStr = timeLimitInMinutes + " minutes";
+        quizInvite.setQuizTimeLimit(timeLimitInMinutesStr);
+
+        quizInviteDao.save(quizInvite);
+
+        String link = quizFrontendUrl + "?token=" + quizInvite.getToken();
+        EnrollmentResponseDTO enrollmentResponseDTO = new EnrollmentResponseDTO();
+        enrollmentResponseDTO.setCandidateId(quizInvite.getCandidateId());
+        enrollmentResponseDTO.setSubject(quizInvite.getSubject());
+        enrollmentResponseDTO.setInviteLink(link);
+        enrollmentResponseDTO.setQuizTimeLimit(quizInvite.getQuizTimeLimit());
+
+        // Try to email the invite link to the candidate; do not fail enrollment if email sending fails
+        try {
+            if (candidate.getEmail() != null && !candidate.getEmail().isBlank()) {
+                inviteEmailSenderService.sendInviteEmail(
+                        candidate.getEmail(),
+                        candidate.getName(),
+                        candidate.getSubject(),
+                        link
+                );
+            }
+        } catch (MessagingException e) {
+            // Swallow or log; keeping enrollment successful.
+            e.printStackTrace();
+        }
+
+        return ResponseEntity.ok(enrollmentResponseDTO);
+    }
+
+    //    DELETE Methods------------------------------------------------------------------------
     @Override
     public ResponseEntity<ResponseStructure<String>> deleteCandidate(String candidateId) {
 

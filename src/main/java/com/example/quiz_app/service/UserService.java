@@ -7,15 +7,12 @@ import com.example.quiz_app.models.QuizInvite;
 import com.example.quiz_app.models.User;
 import com.example.quiz_app.response.ResponseStructure;
 import jakarta.validation.Valid;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public interface UserService {
-    ResponseEntity<EnrollmentResponseDTO> enrollStudent(@Valid CandidateDTO candidateDTO) throws Exception;
+    ResponseEntity<ResponseStructure<Candidate>> enrollStudent(@Valid CandidateDTO candidateDTO) throws Exception;
 
     ResponseEntity<ResponseStructure<?>> getAllCandidates(String searchParam, String searchValue, int page, int limit);
 
@@ -27,5 +24,7 @@ public interface UserService {
 
     ResponseEntity<ResponseStructure<String>> deleteCandidate(String candidateId);
 
-    ResponseEntity<ResponseStructure<Page<Candidate>>> getCandidatesByQuizInviteUsedTrue(int page, int limit);
+    ResponseEntity<ResponseStructure<?>> findAllQuestions(String searchParam, String searchValue, int page, int limit);
+
+    ResponseEntity<EnrollmentResponseDTO> updateQuizTimeLimit(String candidateId, String timeLimitInMinutes);
 }

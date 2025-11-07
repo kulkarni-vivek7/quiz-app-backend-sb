@@ -1,6 +1,5 @@
 package com.example.quiz_app.exceptionHandling;
 
-
 import com.example.quiz_app.exceptionClasses.*;
 import com.example.quiz_app.response.ErrorResponse;
 import org.springframework.http.HttpStatus;

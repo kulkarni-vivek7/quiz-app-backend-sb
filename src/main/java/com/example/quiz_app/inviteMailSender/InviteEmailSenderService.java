@@ -8,6 +8,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class InviteEmailSenderService {
 
@@ -20,7 +22,7 @@ public class InviteEmailSenderService {
         this.mailSender = mailSender;
     }
 
-    public void sendInviteEmail(String toEmail, String candidateName, Subject subject, String link) throws MessagingException {
+    public void sendInviteEmail(String toEmail, String candidateName, List<Subject> subject, String link) throws MessagingException {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
@@ -34,7 +36,7 @@ public class InviteEmailSenderService {
         mailSender.send(message);
     }
 
-    private String buildEmailHtml(String candidateName, Subject subject, String link)
+    private String buildEmailHtml(String candidateName, List<Subject> subject, String link)
     {
         return "<!DOCTYPE html>" +
                 "<html>" +
@@ -55,7 +57,11 @@ public class InviteEmailSenderService {
                 "<body>" +
                 "    <div class='container'>" +
                 "        <div class='header'>You're invited to take a quiz, " + escape(candidateName) + "!</div>" +
-                "        <div class='subject'>Subject: <b>" + escape(subject.name()) + "</b></div>" +
+                "        <div class='subject'>Subject: <b>" +
+                    escape(
+                        subject.stream().map(Enum::name).reduce((a, b) -> a + ", " + b).orElse("General")
+                    )
+                + "</b></div>" +
                 "        <a class='btn' href='" + link + "' target='_blank' rel='noopener'>Start Quiz</a>" +
                 "        <div class='footer'>This link will expire in a few hours. Please do not share it.</div>" +
                 "    </div>" +

@@ -8,7 +8,6 @@ import com.example.quiz_app.models.User;
 import com.example.quiz_app.response.ResponseStructure;
 import com.example.quiz_app.service.UserService;
 import jakarta.validation.Valid;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +27,7 @@ public class UserController {
 
     @PostMapping("/enrollCandidate")
     @PreAuthorize("hasRole('HR')")
-    public ResponseEntity<EnrollmentResponseDTO> enrollStudent(
+    public ResponseEntity<ResponseStructure<Candidate>> enrollCandidate(
             @Valid
             @RequestBody CandidateDTO candidateDTO) throws Exception
     {
@@ -56,16 +55,6 @@ public class UserController {
         return userService.getAllCandidates(searchParam, searchValue, page, limit);
     }
 
-    @GetMapping("/getCandidatesByQuizInviteUsedTrue")
-    @PreAuthorize("hasRole('HR')")
-    public ResponseEntity<ResponseStructure<Page<Candidate>>> getCandidatesByQuizInviteUsedTrue(
-            @RequestParam int page,
-            @RequestParam int limit
-    )
-    {
-        return userService.getCandidatesByQuizInviteUsedTrue(page, limit);
-    }
-
     @GetMapping("/getAnswerSets")
     @PreAuthorize("hasRole('HR')")
     public ResponseEntity<ResponseStructure<?>> getAllAnswerSets(
@@ -87,17 +76,28 @@ public class UserController {
         return userService.getQuizInviteByCandidateId(candidateId);
     }
 
+    @GetMapping("/getAllQuestions")
+    @PreAuthorize("hasRole('HR')")
+    public ResponseEntity<ResponseStructure<?>> getAllQuestions(
+            @RequestParam String searchParam,
+            @RequestParam String searchValue,
+            @RequestParam int page,
+            @RequestParam int limit
+    ) {
+        return userService.findAllQuestions(searchParam, searchValue, page, limit);
+    }
+
 //    PUT Methods----------------------------------------------------------------------------
 
-//    @PutMapping("/updateCandidate")
-//    @PreAuthorize("hasRole('HR')")
-//    public ResponseEntity<ResponseStructure<Candidate>> updateCandidate(
-//            @RequestParam String candidateEmail,
-//            @RequestBody Candidate candidate
-//    )
-//    {
-//        return userService.updateCandidate(candidateEmail, candidate);
-//    }
+    @PutMapping("/updateQuizTimeLimit")
+    @PreAuthorize("hasRole('HR')")
+    public ResponseEntity<EnrollmentResponseDTO> updateQuizTimeLimit(
+            @RequestParam String candidateId,
+            @RequestParam String timeLimitInMinutes
+    )
+    {
+        return userService.updateQuizTimeLimit(candidateId, timeLimitInMinutes);
+    }
 
 //    DELETE Methods------------------------------------------------------------------------
     @DeleteMapping("/deleteCandidate")

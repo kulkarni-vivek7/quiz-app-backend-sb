@@ -2,15 +2,13 @@ package com.example.quiz_app.serviceImpl;
 
 import com.example.quiz_app.dao.QuestionDao;
 import com.example.quiz_app.dto.AddQuestionDTO;
-import com.example.quiz_app.enums.Subject;
-import com.example.quiz_app.exceptionClasses.QuestionsNotFoundException;
+import com.example.quiz_app.dto.CodeSubmissionDTO;
+import com.example.quiz_app.dto.CodeValidationResultDTO;
+import com.example.quiz_app.enums.QuestionType;
 import com.example.quiz_app.models.Question;
-import com.example.quiz_app.response.ResponseStructure;
+import com.example.quiz_app.service.CodeExecutionService;
 import com.example.quiz_app.service.QuestionService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -22,84 +20,80 @@ import java.util.List;
 public class QuestionServiceImpl implements QuestionService {
 
     private final QuestionDao questionDao;
+    private final CodeExecutionService codeExecutionService;
 
-    public QuestionServiceImpl(QuestionDao questionDao) {
+    public QuestionServiceImpl(QuestionDao questionDao, CodeExecutionService codeExecutionService) {
         this.questionDao = questionDao;
+        this.codeExecutionService = codeExecutionService;
     }
 
     @Override
     public ResponseEntity<String> addAllQuestions(List<AddQuestionDTO> questions) {
+        List<Question> questionsToSave = new ArrayList<>();
 
-        List<Question> questions1 = new ArrayList<>();
-
-        for (AddQuestionDTO questionDTO : questions)
-        {
-            Question question = new Question();
-            question.setQuestionText(questionDTO.getQuestionText());
-            question.setOptions(questionDTO.getOptions());
-            question.setCorrectOptionIndex(questionDTO.getCorrectOptionIndex());
-            question.setSubject(questionDTO.getSubject());
-
-            questions1.add(question);
+        for (AddQuestionDTO questionDTO : questions) {
+            // Validate the question before adding
+            ResponseEntity<String> validationResponse = validateQuestion(questionDTO);
+            if (validationResponse.getStatusCode() != HttpStatus.OK) {
+                return validationResponse;
+            }
+            questionsToSave.add(questionDTO.toQuestion());
         }
 
-        questionDao.saveAllQuestions(questions1);
-
-        return ResponseEntity.ok("All Questions Related to " + questions.get(0).getSubject().name() +" Added Successfully");
+        try {
+            questionDao.saveAllQuestions(questionsToSave);
+            return ResponseEntity.ok("Questions added successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error saving questions: " + e.getMessage());
+        }
     }
 
-//    GET Methods
+
     @Override
-    public ResponseEntity<ResponseStructure<?>> findAllQuestions(String searchParam, String searchValue, int page, int limit) {
+    public ResponseEntity<CodeValidationResultDTO> validateCandidateCode(CodeSubmissionDTO submission) {
+        try {
+            CodeValidationResultDTO result = codeExecutionService.validateCode(submission);
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            CodeValidationResultDTO errorResult = new CodeValidationResultDTO();
+            errorResult.setCorrect(false);
+            errorResult.setMessage("Error validating code: " + e.getMessage());
+            errorResult.setErrorDetails(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResult);
+        }
+    }
 
-        if (searchParam.equalsIgnoreCase("questionId") || searchParam.equalsIgnoreCase("subject"))
-        {
-            if (searchParam.equalsIgnoreCase("questionId"))
-            {
-                Question question = questionDao.findQuestionById(searchValue).orElseThrow(() ->
-                        new QuestionsNotFoundException("Question Not Found For Given Id"));
+    private ResponseEntity<String> validateQuestion(AddQuestionDTO questionDTO) {
+        if (questionDTO.getQuestionText() == null || questionDTO.getQuestionText().trim().isEmpty()) {
+            return ResponseEntity.badRequest().body("Question text cannot be empty");
+        }
 
-                ResponseStructure<Question> res = new ResponseStructure<>();
-                res.setStatus(HttpStatus.OK.value());
-                res.setMessage("Question Found Successfully For Given Id");
-                res.setBody(question);
+        if (questionDTO.getQuestionType() == null) {
+            return ResponseEntity.badRequest().body("Question type is required");
+        }
 
-                return ResponseEntity.ok(res);
+        if (questionDTO.getSubject() == null) {
+            return ResponseEntity.badRequest().body("Subject is required");
+        }
+
+        if (questionDTO.getQuestionType() == QuestionType.MCQ) {
+            if (questionDTO.getOptions() == null || questionDTO.getOptions().size() < 2) {
+                return ResponseEntity.badRequest().body("At least 2 options are required for MCQ");
             }
-            else if (searchParam.equalsIgnoreCase("subject")) {
-
-                Subject subject = Subject.valueOf(searchValue.toUpperCase());
-
-                Pageable pageable = PageRequest.of(page, limit, Sort.by("questionId").ascending());
-                Page<Question> questions = questionDao.findAllQuestionsBySubject(subject, pageable);
-
-                if (questions.isEmpty())
-                {
-                    throw new QuestionsNotFoundException("Questions Not Found For Given Subject Name");
-                }
-
-                ResponseStructure<Page<Question>> res = new ResponseStructure<>();
-                res.setStatus(HttpStatus.OK.value());
-                res.setMessage("All Questions Found Successfully For Given Subject Name");
-                res.setBody(questions);
-
-                return ResponseEntity.ok(res);
+            if (questionDTO.getCorrectOptionIndex() < 0 ||
+                questionDTO.getCorrectOptionIndex() >= questionDTO.getOptions().size()) {
+                return ResponseEntity.badRequest().body("Invalid correct option index");
+            }
+        } else if (questionDTO.getQuestionType() == QuestionType.CODING) {
+            if (questionDTO.getTestCases() == null || questionDTO.getTestCases().isEmpty()) {
+                return ResponseEntity.badRequest().body("At least one test case is required for coding questions");
+            }
+            if (questionDTO.getLanguage() == null || questionDTO.getLanguage().trim().isEmpty()) {
+                return ResponseEntity.badRequest().body("Programming language is required for coding questions");
             }
         }
 
-        Pageable pageable = PageRequest.of(page, limit, Sort.by("questionId").ascending());
-        Page<Question> allQuestions = questionDao.findAllQuestions(pageable);
-
-        if (allQuestions.isEmpty())
-        {
-            throw new QuestionsNotFoundException("No Questions Added");
-        }
-
-        ResponseStructure<Page<Question>> res = new ResponseStructure<>();
-        res.setStatus(HttpStatus.OK.value());
-        res.setMessage("All Questions Found Successfully");
-        res.setBody(allQuestions);
-
-        return ResponseEntity.ok(res);
+        return ResponseEntity.ok("Validation successful");
     }
 }

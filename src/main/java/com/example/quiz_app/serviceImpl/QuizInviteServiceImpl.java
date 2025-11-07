@@ -3,12 +3,14 @@ package com.example.quiz_app.serviceImpl;
 import com.example.quiz_app.dao.QuizInviteDao;
 import com.example.quiz_app.dto.QuestionWithoutAnswerDTO;
 import com.example.quiz_app.dto.QuizStartDTO;
+import com.example.quiz_app.enums.Subject;
 import com.example.quiz_app.exceptionClasses.InvalidInviteTokenException;
 import com.example.quiz_app.exceptionClasses.InviteTokenAlreadyUsedException;
 import com.example.quiz_app.models.Question;
 import com.example.quiz_app.models.QuizInvite;
 import com.example.quiz_app.service.QuestionLoaderService;
 import com.example.quiz_app.service.QuizInviteService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
@@ -26,6 +28,9 @@ public class QuizInviteServiceImpl implements QuizInviteService {
         this.questionLoaderService = questionLoaderService;
     }
 
+    @Value("${app.no-of-questions}")
+    private Integer noOfQuestions;
+
     @Override
     public QuizStartDTO startQuiz(String token) throws Exception {
         QuizInvite invite = quizInviteDao.findByToken(token)
@@ -40,22 +45,27 @@ public class QuizInviteServiceImpl implements QuizInviteService {
             throw new InviteTokenAlreadyUsedException("Quiz Invite Already Used... You Can Only Attempt Once");
         }
 
-        List<Question> questions = questionLoaderService.getQuestionsBySubject(invite.getSubject(), 10);
+        List<Question> allQuestions = new ArrayList<>();
+
+        for (Subject subject : invite.getSubject())
+        {
+            List<Question> questions = questionLoaderService.getQuestionsBySubject(subject, noOfQuestions);
+            allQuestions.addAll(questions);
+        }
+
         List<QuestionWithoutAnswerDTO> dtoList = new ArrayList<>();
 
-        for (Question q : questions) {
-            QuestionWithoutAnswerDTO dto = new QuestionWithoutAnswerDTO();
-            dto.setQuestionId(q.getQuestionId());
-            dto.setQuestionText(q.getQuestionText());
-            dto.setOptions(q.getOptions());
-            dto.setSubject(invite.getSubject());
+        for (Question q : allQuestions) {
+            QuestionWithoutAnswerDTO dto = QuestionWithoutAnswerDTO.fromQuestion(q);
             dtoList.add(dto);
         }
+
 
         QuizStartDTO startDTO = new QuizStartDTO();
         startDTO.setCandidateId(invite.getCandidateId());
         startDTO.setSubject(invite.getSubject());
         startDTO.setQuestions(dtoList);
+        startDTO.setQuizTimeLimit(invite.getQuizTimeLimit());
         return startDTO;
     }
 }

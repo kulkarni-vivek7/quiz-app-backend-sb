@@ -5,6 +5,8 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Data
 @Document
 public class Candidate {
@@ -14,5 +16,5 @@ public class Candidate {
     private int age;
     private String email;
     private String phone;
-    private Subject subject;
+    private List<Subject> subject;
 }

@@ -43,7 +43,7 @@ public class SecurityConfig {
                                 "/api/candidate/answer",
                                 "/api/candidate/getCandidateByToken",
                                 "/api/quiz/start",
-                                "/api/questions").permitAll()
+                                "/api/questions/validate").permitAll()
                         .anyRequest().authenticated()
                 );
 

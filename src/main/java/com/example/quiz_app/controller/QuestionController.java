@@ -1,9 +1,11 @@
 package com.example.quiz_app.controller;
 
 import com.example.quiz_app.dto.AddQuestionDTO;
-import com.example.quiz_app.response.ResponseStructure;
+import com.example.quiz_app.dto.CodeSubmissionDTO;
+import com.example.quiz_app.dto.CodeValidationResultDTO;
 import com.example.quiz_app.service.QuestionService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,21 +22,13 @@ public class QuestionController {
     }
 
     @PostMapping
-    public ResponseEntity<String> addAllQuestions(@RequestBody List<AddQuestionDTO> questions)
-    {
+    @PreAuthorize("hasRole('HR')")
+    public ResponseEntity<String> addAllQuestions(@RequestBody List<AddQuestionDTO> questions) {
         return questionService.addAllQuestions(questions);
     }
 
-//    GET Methods
-
-    @GetMapping
-    public ResponseEntity<ResponseStructure<?>> getAllQuestions(
-            @RequestParam String searchParam,
-            @RequestParam String searchValue,
-            @RequestParam int page,
-            @RequestParam int limit
-    )
-    {
-        return questionService.findAllQuestions(searchParam, searchValue, page, limit);
+    @PostMapping("/validate")
+    public ResponseEntity<CodeValidationResultDTO> validateCandidateCode(@RequestBody CodeSubmissionDTO submission) {
+        return questionService.validateCandidateCode(submission);
     }
 }

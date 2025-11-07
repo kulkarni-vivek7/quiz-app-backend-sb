@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
+import java.util.List;
 
 @Data
 @Document
@@ -19,7 +20,9 @@ public class QuizInvite {
 
     private String candidateId;
 
-    private Subject subject;
+    private String quizTimeLimit;
+
+    private List<Subject> subject;
 
     private Instant createdAt;
 

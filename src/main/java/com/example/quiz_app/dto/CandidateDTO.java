@@ -4,6 +4,8 @@ import com.example.quiz_app.enums.Subject;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class CandidateDTO {
     @NotBlank
@@ -19,5 +21,5 @@ public class CandidateDTO {
     private String phone;
 
     @NotNull
-    private Subject subject;
+    private List<Subject> subject;
 }

@@ -18,4 +18,6 @@ public interface QuizInviteDao {
     void deleteQuizInvite(QuizInvite invite);
 
     Page<QuizInvite> findQuizInvitesByUsedTrue(Pageable pageable);
+
+    Page<QuizInvite> findQuizInvitesByUsedFalse(Pageable pageable);
 }

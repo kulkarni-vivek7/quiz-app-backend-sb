@@ -1,9 +1,9 @@
 package com.example.quiz_app.kafka;
 
 import com.example.quiz_app.dao.AnswerSetDao;
+import com.example.quiz_app.dto.AnswerDTO;
 import com.example.quiz_app.exceptionClasses.NoAnswerSetFoundException;
 import com.example.quiz_app.models.AnswerSet;
-import com.example.quiz_app.models.Question;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
@@ -31,25 +31,18 @@ public class KafkaConsumerService {
             throw new NoAnswerSetFoundException("No stored answer set found for studentId: "+ answerSet.getCandidateId());
         }
 
-        List<Question> questions = answerSetOpt.get().getQuestions();
+        List<AnswerDTO> answers = answerSetOpt.get().getAnswers();
 
-        int total = questions.size();
-
+        int total = answers.size();
         int correct = 0;
 
-        for (Question q : questions) {
-
-            int correctIndex = q.getCorrectOptionIndex();
-            int chosenIndex = q.getChosenOptionIndex();
-            String chosenOpt = (chosenIndex >= 0 && chosenIndex < q.getOptions().size()) ? q.getOptions().get(chosenIndex) : "Invalid Choice";
-            String correctOpt = (correctIndex >= 0 && correctIndex < q.getOptions().size()) ? q.getOptions().get(correctIndex) : "Unknown";
-
-            if (correctIndex == chosenIndex) {
+        for (AnswerDTO answer : answers) {
+            if (answer.isCorrect()) {
                 correct++;
             }
 
-            System.out.printf("Q: %s | Chosen: %s | Correct: %s%n",
-                    q.getQuestionText(), chosenOpt, correctOpt);
+            System.out.printf("Q: %s | Type: %s | Correct: %s%n",
+                    answer.getQuestionId(), answer.getQuestionType(), answer.isCorrect());
         }
 
         System.out.printf("Candidate %s scored %d/%d%n",
