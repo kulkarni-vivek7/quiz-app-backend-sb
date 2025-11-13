@@ -340,8 +340,8 @@ public class UserServiceImpl implements UserService {
                     throw new QuestionsNotFoundException("Question not found with id: " + searchValue);
                 }
 
-                ResponseStructure<QuestionWithoutAnswerDTO> response = new ResponseStructure<>();
-                response.setBody(QuestionWithoutAnswerDTO.fromQuestion(questionOpt.get()));
+                ResponseStructure<Question> response = new ResponseStructure<>();
+                response.setBody(questionOpt.get());
                 response.setMessage("Question retrieved successfully");
                 response.setStatus(HttpStatus.OK.value());
 
