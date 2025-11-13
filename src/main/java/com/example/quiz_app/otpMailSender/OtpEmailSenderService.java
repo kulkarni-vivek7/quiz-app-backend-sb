@@ -18,7 +18,7 @@ public class OtpEmailSenderService {
     }
 
     private static final String SUBJECT = "HireQuiz - " +
-            "Your One Time Password (OTP)";
+            "Your One Time Password (OTP) for Login";
 
     public String generateOtp()
     {
@@ -63,7 +63,7 @@ public class OtpEmailSenderService {
                 "<body>" +
                 "    <div class='container'>" +
                 "        <div class='header'>🔐 OTP Verification</div>" +
-                "        <p class='message'>Use the following One-Time Password (OTP) to proceed with your action:</p>" +
+                "        <p class='message'>Use the following One-Time Password (OTP) to Login:</p>" +
                 "        <div class='otp'>" + otp + "</div>" +
                 "        <p class='message'>This OTP is valid for only 10 minutes. Do not share it with anyone for security reasons.</p>" +
                 "        <p class='footer'>If you did not request this, please ignore this email or contact our support team.</p>" +
